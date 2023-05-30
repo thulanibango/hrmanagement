@@ -53,39 +53,7 @@ const Authentication = () => {
     setIsLoginMode(prevMode => !prevMode);
   };
 
-  // const authSubmitHandler = async event => {
-  //   event.preventDefault();
-  //   if (isLoginMode) {
-  //   } else {
-  //     try {
-  //       setIsLoading(true)
-  //       const response = await fetch('http://localhost:5001/api/users/signup', {
-  //         method: 'POST',
-  //         headers: {
-  //           'Content-Type': 'application/json'
-  //         },
-  //         body: JSON.stringify({
-  //           name: formState.inputs.name.value,
-  //           email: formState.inputs.email.value,
-  //           password: formState.inputs.password.value
-  //         })
-  //       });
-  //       console.log(formState.inputs)
 
-  //       const responseData = await response.json();
-  //       console.log(responseData);
-  //       setIsLoading(false);
-  //       auth.login();
-
-  //     } catch (err) {
-  //       console.log(err);
-  //       setError(err.message )
-  //     }
-  //   }
-  //   setIsLoading(false)
-
-  
-  // };
   const authSubmitHandler = async event => {
     event.preventDefault();
     

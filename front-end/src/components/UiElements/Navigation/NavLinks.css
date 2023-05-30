@@ -12,11 +12,14 @@
   
   .nav-links li {
     margin: 1rem;
+    border-bottom: 1px solid transparent;
+
   }
   
   .nav-links a {
-    border: 1px solid transparent;
+    border-bottom: 1px solid transparent;
     color: #292929;
+    width: 100%;
     text-decoration: none;
     padding: 0.5rem;
   }
@@ -24,7 +27,7 @@
   .nav-links a:hover,
   .nav-links a:active,
   .nav-links a.active {
-    background: #f8df00;
+    background: white;
     border-color: #292929;
     color: #292929;
   }
@@ -70,7 +73,7 @@
     
     .nav-links button:hover,
     .nav-links button:active {
-      background: #f8df00;
+      background: white;
       color: #292929;
     }
   }

@@ -28,7 +28,7 @@ const NewUser = () => {
   }
 
   return (
-    <form className="place-form" onSubmit={userSubmitHandler}>
+    <form className="user-form" onSubmit={userSubmitHandler}>
       <Input
         id="name"
         element="input"

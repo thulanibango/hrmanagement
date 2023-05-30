@@ -38,8 +38,8 @@ const UserInfo = props=>{
             <Modal show={showEdit}
              onCancel={closeEditHandler} 
              header={singleUser.name} 
-             contentClass="place-item_modal-content"
-             footerClass="place-item_modal-actions"
+             contentClass="user-item_modal-content"
+             footerClass="user-item_modal-actions"
              footer={<Button onClick={closeEditHandler}>Close</Button>} >
              <div className="info-container">
                 <h2>Edit here</h2>
@@ -49,8 +49,8 @@ const UserInfo = props=>{
             show={showConfirm}
              onCancel={cancelDeleteHandler} 
              header={singleUser.name} 
-             contentClass="place-item_modal-content"
-             footerClass="place-item_modal-actions"
+             contentClass="user-item_modal-content"
+             footerClass="user-item_modal-actions"
              footer={<React.Fragment><Button inverse onClick={cancelDeleteHandler}>Cancel</Button><Button danger onClick={confirmDeleteHandler}>Delete</Button></React.Fragment>} >
              <div className="info-container">
                 <h2>ARE YOU SURE ??</h2>
@@ -61,7 +61,6 @@ const UserInfo = props=>{
             <li className="info-item">
                 <Card>
                 {props.items.map(user=>(
-                   
                     <div className="info-item_image">
                         <img src={singleUser.image} alt={singleUser.name}/>
                         <div className="info-item__info">
@@ -70,8 +69,7 @@ const UserInfo = props=>{
                             <h3>{singleUser.department}</h3>
                             <p>{singleUser.description}</p>
                         </div>
-                        <div className="place-item__actions">
-                            {/* <Button to={`./user/${singleUser.id}`} inverse onClick={openEditHandler}>Edit</Button> */}
+                        <div className="user-item__actions">
                             <Button inverse to={`/newuser/${singleUser.id}`}>Edit</Button>
                             <Button danger onClick={showDeleteWarningHandler}>Delete</Button>
                             <Button >Message</Button>
