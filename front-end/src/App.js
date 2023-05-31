@@ -63,6 +63,7 @@ const App=()=> {
     <main>
     <Switch>
       {routes}
+  
     </Switch>
     </main>
   </Router>

@@ -1,5 +1,6 @@
 // Here i am mimicing the MVC structure without the view
-const { validationResult } = require('express-validator');
+const { validationResult } = require('express-validator'); //check for errors of code
+const bcrypt = require('bcryptjs'); //for enrypting password
 
 const HttpError =require('../models/http-error');
 const User = require('../models/user')
@@ -36,14 +37,11 @@ const getUserById = async (req, res, next)=>{
 
 const createUser = async (req, res, next)=>{
     // object destructring
-    const {name, description, email, isAdmin, address,image }=req.body;
+    const {name,  email,password }=req.body;
     const createdUser = new User({
       name,
-      description, 
-      image:'https://s3.amazonaws.com/37assets/svn/765-default-avatar.png',
-      isAdmin,
-      address,
-      email
+      email,
+      password
     });
     try {
       await  createdUser.save();
@@ -128,13 +126,32 @@ const updateUser = async (req, res, next) => {
     return next(error);
   }
 
-  if (!existingUser || existingUser.password !== password) {
+  if (!existingUser ) {
     const error = new HttpError(
       'Invalid credentials, could not log you in.',
       401
     );
     return next(error);
   }
+  let isValidPass =false;
+  try {
+  isValidPass = await bcrypt.compare(password, existingUser.password)
+  } catch (err) {
+    const error = new HttpError(
+      'Try again creditials.',
+      500
+    );
+    return next(error);
+  }
+
+  if (!isValidPass ) {
+    const error = new HttpError(
+      'Invalid credentials, could not log you in.',
+      401
+    );
+    return next(error);
+  }
+
 
   res.json({message: 'Logged in!'});
   };
@@ -147,10 +164,6 @@ const updateUser = async (req, res, next) => {
       );
     }
     const { name, email, password } = req.body;
-    // const {name,email,password, description, isAdmin, address,image }=req.body;
-
-    // const {name, description, email, isAdmin, address,image }=req.body;
-  
     let existingUser;
     try {
       existingUser = await User.findOne({ email: email });
@@ -169,10 +182,23 @@ const updateUser = async (req, res, next) => {
       );
       return next(error);
     }
+    let hashpassword;
+    try {
+    hashpassword= await bcrypt.hash(password, 12)
+      
+    } catch (err) {
+      const error = new HttpError(
+        'Could not create user, hashing issue',
+        500
+      );
+      return next(error);
+
+      
+    }
     const createdUser = new User({
       name,
       email,
-      password
+      password:hashpassword
     });
   
     // const createdUser = new User({

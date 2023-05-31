@@ -2,8 +2,10 @@ import React from 'react';
 
 import UserItem from './UserItem';
 import Card from './UiElements/Card';
+import './UserList.css';
 
 const UserList = props =>{
+    console.log(props)
 
     if (props.items.length === 0){
         return(
@@ -11,11 +13,9 @@ const UserList = props =>{
                 <Card>
                     <h2>No Employees found</h2>
                 </Card>
-               
             </div>
         ) 
     }
-
     return (
         <ul className='users-list'>
             {props.items.map(user=>(

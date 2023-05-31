@@ -25,8 +25,8 @@ router.post(
       check('name')
         .not()
         .isEmpty(),
-      check('description').isLength({ min: 5 }),
-      check('address')
+      check('email'),
+      check('password')
         .not()
         .isEmpty()
     ],
@@ -39,7 +39,7 @@ router.post(
       check('name')
         .not()
         .isEmpty(),
-      check('description').isLength({ min: 5 })
+      check('email')
     ],
     usersControllers.updateUser
   );
