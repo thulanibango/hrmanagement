@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
-import {BrowserRouter as Router, Route, Redirect,Switch} from 'react-router-dom'
 
+import {BrowserRouter as Router, Route, Redirect,Switch} from 'react-router-dom'
 import Users from './pages/Users';
 import MainNavigation from './components/UiElements/Navigation/MainNavigation';
 import React,{useCallback, useState} from 'react';

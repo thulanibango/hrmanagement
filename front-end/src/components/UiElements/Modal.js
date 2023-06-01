@@ -1,17 +1,25 @@
+//React imports
 import React from 'react';
 import ReactDOM from "react-dom";
+
+//personal imports
 import {CSSTransition} from 'react-transition-group';
 import Backdrop from './Backdrop';
 import Avatar from './Avatar';
+
+//css imports
 import "./Modal.css"
+
+
 
 // Dynamic modal that can be used throughout the application and can be fine tuned down to the class of certain elements
 const ModalOvaerlay = props =>{
     const content = (
         <div className={`modal ${props.className}`} style={props.style}>
-            <header className={`modal_header ${props.headerClass}`}>
+            <header className={`modal__header ${props.headerClass}`}>
                 <h2>{props.header}</h2>
-                <Avatar image={props.image} />
+                {/* using Avatar compnent to set the profile picture or any profile picture related demands */}
+                <Avatar image={props.image} /> 
             </header>
             <form onSubmit={props.onmSubmit ? props.onSubmit : event=>event.preventDefault()}>
                 <div className={`modal__content ${props.contentClass}`}>

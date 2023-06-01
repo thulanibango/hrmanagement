@@ -1,3 +1,5 @@
+
+// Extending from the error class to build uique or custome errors
 class HttpError extends Error{
     constructor(message, errorCode){
         super(message);

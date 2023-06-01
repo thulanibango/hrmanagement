@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs'); //for enrypting password
 const HttpError =require('../models/http-error');
 const User = require('../models/user')
 
+//Get all users
 const getUsers = async(req, res, next) => {
   let users;
   try {
@@ -19,6 +20,7 @@ const getUsers = async(req, res, next) => {
   res.json({users: users.map(user => user.toObject({ getters: true }))});
   };
 
+  //get useres by Id 
 const getUserById = async (req, res, next)=>{
     const userid = req.params.uid; 
     let user
@@ -35,6 +37,7 @@ const getUserById = async (req, res, next)=>{
      res.json({data:user.toObject({getters:true}), message:"success"})
 };
 
+//Create a user
 const createUser = async (req, res, next)=>{
     // object destructring
     const {name,  email,password }=req.body;
@@ -56,6 +59,8 @@ const createUser = async (req, res, next)=>{
 
 
 }
+
+//update a user
 const updateUser = async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -84,7 +89,7 @@ const updateUser = async (req, res, next) => {
     }
     res.status(200).json({ data: user.toObject({getters:true}) });
   };
-
+//delete a user
   const deleteUser = async(req, res, next) => {
     const userId = req.params.uid;
     let user;
@@ -111,6 +116,7 @@ const updateUser = async (req, res, next) => {
   res.status(200).json({ message: 'Deleted user.' });
   };
 
+  //login 
   const login = async(req, res, next) => {
     const { email, password } = req.body;
 
@@ -156,6 +162,7 @@ const updateUser = async (req, res, next) => {
   res.json({message: 'Logged in!'});
   };
 
+  //create an account
   const signup = async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -200,12 +207,6 @@ const updateUser = async (req, res, next) => {
       email,
       password:hashpassword
     });
-  
-    // const createdUser = new User({
-    //   name,
-    //   email,
-    //   password
-    // });
     
   console.log(createdUser)
     try {
